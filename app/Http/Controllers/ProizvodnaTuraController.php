@@ -34,4 +34,10 @@ class ProizvodnaTuraController extends Controller
 
         return redirect()->route('ture.index')->with('success', 'Proizvodna tura je uspešno kreirana.');
     }
+
+    public function destroy(ProizvodnaTura $tura)
+    {
+        $tura->delete();
+        return redirect()->route('ture.index')->with('success', 'Proizvodna tura je obrisana.');
+    }
 } 

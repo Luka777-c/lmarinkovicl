@@ -11,3 +11,4 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/ture', [ProizvodnaTuraController::class, 'index'])->name('ture.index');
 Route::get('/ture/nova', [ProizvodnaTuraController::class, 'create'])->name('ture.create');
 Route::post('/ture', [ProizvodnaTuraController::class, 'store'])->name('ture.store');
+Route::delete('/ture/{tura}', [ProizvodnaTuraController::class, 'destroy'])->name('ture.destroy');
