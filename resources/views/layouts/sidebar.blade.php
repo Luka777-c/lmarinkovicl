@@ -29,9 +29,9 @@
             </a>
         </div>
         <div class="nav-item mx-3 mb-1">
-            <a href="/narudzbine" class="nav-link d-flex align-items-center rounded-3 px-3 py-2 {{ request()->is('narudzbine*') ? 'active' : '' }}">
+            <a href="{{ route('narudzbenice.index') }}" class="nav-link d-flex align-items-center rounded-3 px-3 py-2 {{ request()->is('narudzbenice*') ? 'active' : '' }}">
                 <i class="fas fa-shopping-cart me-2"></i>
-                <span>Narudžbine</span>
+                <span>Narudžbenice</span>
             </a>
         </div>
         <div class="nav-item mx-3 mb-1">

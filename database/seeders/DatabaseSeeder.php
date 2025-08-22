@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
         ZadatakSeeder::class,
         SirovinaAmbalazaSeeder::class,
         OpremaSeeder::class,
-        SirovinaAmbalazaSeeder::class,
+        NabavkaSeeder::class,
     ]);
 }
 }
