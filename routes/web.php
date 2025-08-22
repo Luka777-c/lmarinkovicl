@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NarudzbenicaController;
 use App\Http\Controllers\OpremaController;
 use App\Http\Controllers\ProizvodnaTuraController;
+use App\Http\Controllers\ZadatakController;
 use App\Http\Controllers\ZaliheController;
 use App\Models\Oprema;
 
@@ -41,3 +42,11 @@ Route::get('/narudzbenice/nova', [NarudzbenicaController::class, 'create'])->nam
 Route::post('/narudzbenice', [NarudzbenicaController::class, 'store'])->name('narudzbenice.store');
 
 Route::delete('/narudzbenica/{nabavka}', [NarudzbenicaController::class, 'destroy'])->name('narudzbenica.destroy');
+
+// Zadatci
+Route::get('/zadaci', [ZadatakController::class, 'index'])->name('zadaci.index');
+
+Route::get('/zadaci/novi', [ZadatakController::class, 'create'])->name('zadaci.create');
+Route::post('/zadaci', [ZadatakController::class, 'store'])->name('zadaci.store');
+
+Route::delete('/zadatak/{zadatak}', [ZadatakController::class, 'destroy'])->name('zadatak.destroy');

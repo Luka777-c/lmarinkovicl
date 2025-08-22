@@ -35,7 +35,7 @@
             </a>
         </div>
         <div class="nav-item mx-3 mb-1">
-            <a href="/zadaci" class="nav-link d-flex align-items-center rounded-3 px-3 py-2 {{ request()->is('zadaci*') ? 'active' : '' }}">
+            <a href="{{ route('zadaci.index') }}" class="nav-link d-flex align-items-center rounded-3 px-3 py-2 {{ request()->is('zadaci*') ? 'active' : '' }}">
                 <i class="fas fa-tasks me-2"></i>
                 <span>Zadaci</span>
             </a>
