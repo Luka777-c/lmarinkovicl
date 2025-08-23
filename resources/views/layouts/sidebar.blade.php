@@ -41,9 +41,9 @@
             </a>
         </div>
         <div class="nav-item mx-3 mb-1">
-            <a href="/izvestaji" class="nav-link d-flex align-items-center rounded-3 px-3 py-2 {{ request()->is('izvestaji*') ? 'active' : '' }}">
-                <i class="fas fa-chart-bar me-2"></i>
-                <span>Izveštaji</span>
+            <a href="{{ route('kontakt.index') }}" class="nav-link d-flex align-items-center rounded-3 px-3 py-2 {{ request()->is('kontakt*') ? 'active' : '' }}">
+                <i class="fas fa-address-card me-2"></i>
+                <span>Kontakt</span>
             </a>
         </div>
     </div>

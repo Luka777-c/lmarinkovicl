@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\KontaktController;
 use App\Http\Controllers\NarudzbenicaController;
 use App\Http\Controllers\OpremaController;
 use App\Http\Controllers\ProizvodnaTuraController;
@@ -50,3 +51,6 @@ Route::get('/zadaci/novi', [ZadatakController::class, 'create'])->name('zadaci.c
 Route::post('/zadaci', [ZadatakController::class, 'store'])->name('zadaci.store');
 
 Route::delete('/zadatak/{zadatak}', [ZadatakController::class, 'destroy'])->name('zadatak.destroy');
+
+// Kontakt
+Route::get('/kontakt', [KontaktController::class, 'index'])->name('kontakt.index');
