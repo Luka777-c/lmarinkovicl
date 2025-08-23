@@ -63,42 +63,96 @@
         <h3 class="h5 mb-3"><i class="fas fa-bolt me-2"></i> Brze akcije</h3>
         <div class="d-flex flex-wrap gap-2">
             <a href="{{ route('ture.create') }}" class="btn btn-primary"><i class="fas fa-plus me-1"></i> Nova proizvodna tura</a>
-            <a href="/narudzbine/nova" class="btn btn-outline-primary"><i class="fas fa-shopping-cart me-1"></i> Nova narudžbina</a>
-            <a href="/zadaci/dodeli" class="btn btn-outline-primary"><i class="fas fa-user-plus me-1"></i> Dodeli zadatak</a>
-            <a href="/oprema/pregled" class="btn btn-outline-primary"><i class="fas fa-wrench me-1"></i> Pregled opreme</a>
+            <a href="{{ route('narudzbenice.create') }}" class="btn btn-outline-primary"><i class="fas fa-shopping-cart me-1"></i> Nova narudžbina</a>
+            <a href="{{ route('zadaci.create') }}" class="btn btn-outline-primary"><i class="fas fa-user-plus me-1"></i> Dodeli zadatak</a>
+            <a href="{{ route('oprema.create') }}" class="btn btn-outline-primary"><i class="fas fa-wrench me-1"></i> Dodaj opremu</a>
         </div>
     </div>
 
-    <div class="data-table">
-        <div class="table-header">
-            <h3 class="h6 mb-0"><i class="fas fa-history me-2"></i> Poslednje aktivnosti</h3>
+    <!-- Poslednje proizvodne ture -->
+    <div class="row g-4 mb-4">
+        <div class="col-lg-6">
+            <div class="data-table">
+                <div class="table-header">
+                    <h3 class="h6 mb-0"><i class="fas fa-wine-bottle me-2"></i> Poslednje proizvodne ture</h3>
+                </div>
+                <div class="table-content">
+                    <div class="table-responsive">
+                        <table class="table align-middle mb-0">
+                            <thead>
+                                <tr>
+                                    <th>Naziv</th>
+                                    <th>Status</th>
+                                    <th>Datum</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @forelse ($ture as $tura)
+                                    <tr>
+                                        <td>{{ $tura->naziv_ture }}</td>
+                                        <td>
+                                            @if($tura->status === 'U toku')
+                                                <span class="badge bg-primary">{{ $tura->status }}</span>
+                                            @elseif($tura->status === 'Završeno')
+                                                <span class="badge bg-success">{{ $tura->status }}</span>
+                                            @else
+                                                <span class="badge bg-warning">{{ $tura->status }}</span>
+                                            @endif
+                                        </td>
+                                        <td>{{ optional($tura->created_at)->format('d.m.Y') ?? '—' }}</td>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td colspan="3" class="text-muted">Nema proizvodnih tura.</td>
+                                    </tr>
+                                @endforelse
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="table-content">
-            <div class="table-responsive">
-                <table class="table align-middle mb-0">
-                    <thead>
-                        <tr>
-                            <th>Vreme</th>
-                            <th>Aktivnost</th>
-                            <th>Korisnik</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>09:30</td>
-                            <td>Kreirana nova tura - Merlot 2025</td>
-                            <td>Ana Milić</td>
-                            <td><span class="status-badge status-pending">Zakazano</span></td>
-                        </tr>
-                        <tr>
-                            <td>Juče</td>
-                            <td>Ažurirane zalihe - Čepovi</td>
-                            <td>Stefan Ristić</td>
-                            <td><span class="status-badge status-completed">Završeno</span></td>
-                        </tr>
-                    </tbody>
-                </table>
+
+        <!-- Poslednji zadaci -->
+        <div class="col-lg-6">
+            <div class="data-table">
+                <div class="table-header">
+                    <h3 class="h6 mb-0"><i class="fas fa-tasks me-2"></i> Poslednji zadaci</h3>
+                </div>
+                <div class="table-content">
+                    <div class="table-responsive">
+                        <table class="table align-middle mb-0">
+                            <thead>
+                                <tr>
+                                    <th>Opis</th>
+                                    <th>Status</th>
+                                    <th>Dodeljen</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @forelse ($zadaci as $zadatak)
+                                    <tr>
+                                        <td>{{ Str::limit($zadatak->opis, 30) }}</td>
+                                        <td>
+                                            @if($zadatak->status === 'Na čekanju')
+                                                <span class="badge bg-warning">{{ $zadatak->status }}</span>
+                                            @elseif($zadatak->status === 'U toku')
+                                                <span class="badge bg-primary">{{ $zadatak->status }}</span>
+                                            @else
+                                                <span class="badge bg-success">{{ $zadatak->status }}</span>
+                                            @endif
+                                        </td>
+                                        <td>{{ optional($zadatak->user)->name ?? '—' }}</td>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td colspan="3" class="text-muted">Nema zadataka.</td>
+                                    </tr>
+                                @endforelse
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

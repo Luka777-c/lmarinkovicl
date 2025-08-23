@@ -17,7 +17,7 @@ class HomeController extends Controller
             $aktivneTure = ProizvodnaTura::where('status', '!=', 'Završeno')->count();
             
             // Ukupne zalihe (suma količina na stanju)
-            $ukupnoZaliha = SirovinaAmbalaza::sum('kolicina_na_stanju');
+            $ukupnoZaliha = SirovinaAmbalaza::sum('kolicina_na_stanju') ?? 0;
             
             // Ukupan broj narudžbenica (nabavki)
             $aktivneNarudzbine = Nabavka::count();
@@ -35,6 +35,7 @@ class HomeController extends Controller
             $nabavke = Nabavka::with('sirovinaAmbalaza')->orderByDesc('created_at')->limit(5)->get();
             
         } catch (\Exception $e) {
+            \Log::error('HomeController error: ' . $e->getMessage());
             $aktivneTure = 0;
             $ukupnoZaliha = 0;
             $aktivneNarudzbine = 0;

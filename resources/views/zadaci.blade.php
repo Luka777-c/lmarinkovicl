@@ -60,10 +60,10 @@
                                         <span class="badge bg-success">Završen</span>
                                     @endif
                                 </td>
-                                <td>{{ $zadatak->user->name }}</td>
-                                <td>{{ $zadatak->proizvodnaTura->naziv_ture }}</td>
-                                <td>{{ $zadatak->datum_dodele->format('d.m.Y') }}</td>
-                                <td>{{ $zadatak->datum_zavrsetka ? $zadatak->datum_zavrsetka->format('d.m.Y') : '-' }}</td>
+                                <td>{{ optional($zadatak->user)->name ?? '—' }}</td>
+                                <td>{{ optional($zadatak->proizvodnaTura)->naziv_ture ?? '—' }}</td>
+                                <td>{{ optional($zadatak->datum_dodele)->format('d.m.Y') ?? '—' }}</td>
+                                <td>{{ optional($zadatak->datum_zavrsetka)->format('d.m.Y') ?? '—' }}</td>
                                 <td class="text-end">
                                     <form action="{{ route('zadatak.destroy', $zadatak) }}" method="POST" class="d-inline">
                                         @csrf

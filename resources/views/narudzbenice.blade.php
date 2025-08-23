@@ -48,9 +48,9 @@
                         @forelse ($narudzbenice as $index => $narudzbenica)
                             <tr>
                                 <td>{{ $index + 1 }}</td>
-                                <td>{{ $narudzbenica->sirovinaAmbalaza->naziv }}</td>
+                                <td>{{ optional($narudzbenica->sirovinaAmbalaza)->naziv ?? '—' }}</td>
                                 <td>{{ $narudzbenica->kolicina }}</td>
-                                <td>{{ $narudzbenica->datum_nabavke->format('d.m.Y') }}</td>
+                                <td>{{ optional($narudzbenica->datum_nabavke)->format('d.m.Y') ?? '—' }}</td>
                                 <td>{{ $narudzbenica->dobavljac }}</td>
                                 <td class="text-end">
                                     <form action="{{ route('narudzbenica.destroy', $narudzbenica) }}" method="POST" class="d-inline">

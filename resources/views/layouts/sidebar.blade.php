@@ -46,5 +46,16 @@
                 <span>Kontakt</span>
             </a>
         </div>
+        
+        <!-- Logout -->
+        <div class="nav-item mx-3 mt-auto">
+            <form action="{{ route('logout') }}" method="POST" class="d-inline">
+                @csrf
+                <button type="submit" class="nav-link d-flex align-items-center rounded-3 px-3 py-2 w-100 border-0 bg-transparent text-white">
+                    <i class="fas fa-sign-out-alt me-2"></i>
+                    <span>Odjavi se</span>
+                </button>
+            </form>
+        </div>
     </div>
 </nav> 
