@@ -12,7 +12,8 @@ class Nabavka extends Model
         'kolicina',
         'datum_nabavke',
         'dobavljac',
-        'sirovina_ambalaza_id'
+        'sirovina_ambalaza_id',
+        'napomena'
     ];
 
     protected $casts = [

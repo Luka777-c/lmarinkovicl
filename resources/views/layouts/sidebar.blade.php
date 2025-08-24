@@ -5,7 +5,7 @@
     </div>
     <div class="nav-menu py-3">
         <div class="nav-item mx-3 mb-1">
-            <a href="{{ route('home') }}" class="nav-link d-flex align-items-center rounded-3 px-3 py-2 {{ request()->is('/') ? 'active' : '' }}">
+            <a href="{{ route('home') }}" class="nav-link d-flex align-items-center rounded-3 px-3 py-2 {{ request()->is('admin') ? 'active' : '' }}">
                 <i class="fas fa-tachometer-alt me-2"></i>
                 <span>Dashboard</span>
             </a>

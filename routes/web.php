@@ -7,6 +7,7 @@ use App\Http\Controllers\KontaktController;
 use App\Http\Controllers\NarudzbenicaController;
 use App\Http\Controllers\OpremaController;
 use App\Http\Controllers\ProizvodnaTuraController;
+use App\Http\Controllers\PublicNarudzbenicaController;
 use App\Http\Controllers\ZadatakController;
 use App\Http\Controllers\ZaliheController;
 use App\Models\Oprema;
@@ -16,12 +17,22 @@ Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 Route::get('/register', [AuthController::class, 'showRegister'])->name('register');
 Route::post('/register', [AuthController::class, 'register']);
-Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+// Javna početna stranica
+Route::get('/', function () {
+    return redirect()->route('public.narudzbenice.index');
+})->name('public.home');
+
+// Javne narudžbenice (use case za obične korisnike)
+Route::get('/public/narudzbenice', [PublicNarudzbenicaController::class, 'index'])->name('public.narudzbenice.index');
+Route::get('/public/narudzbenice/nova', [PublicNarudzbenicaController::class, 'create'])->name('public.narudzbenice.create');
+Route::post('/public/narudzbenice', [PublicNarudzbenicaController::class, 'store'])->name('public.narudzbenice.store');
+Route::get('/public/narudzbenice/{narudzbenica}', [PublicNarudzbenicaController::class, 'show'])->name('public.narudzbenice.show');
 
 // Zaštićene rute (zahtevaju autentifikaciju)
 Route::middleware(['auth'])->group(function () {
-    // Početna stranica
-    Route::get('/', [HomeController::class, 'index'])->name('home');
+    // Admin početna stranica
+    Route::get('/admin', [HomeController::class, 'index'])->name('home');
 
     // Proizvodne ture
     Route::get('/ture', [ProizvodnaTuraController::class, 'index'])->name('ture.index');

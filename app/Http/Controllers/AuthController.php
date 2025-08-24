@@ -32,7 +32,7 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect()->intended('/');
+            return redirect()->intended('/admin');
         }
 
         return back()->withErrors([
@@ -68,7 +68,7 @@ class AuthController extends Controller
 
         Auth::login($user);
 
-        return redirect('/')->with('success', 'Uspešno ste se registrovali!');
+        return redirect('/admin')->with('success', 'Uspešno ste se registrovali!');
     }
 
     public function logout(Request $request)
