@@ -1,0 +1,74 @@
+models:
+  Uloga:
+    id: id
+    naziv: string
+    relationships:
+      hasMany: User, Zadatak
+
+  User:
+    id: id
+    name: string
+    email: string unique
+    password: string
+    uloga_id: id foreign:uloga.id
+    relationships:
+      belongsTo: Uloga
+      hasMany: Zadatak
+
+  Nabavka:
+    id: id
+    kolicina: integer
+    datum_nabavke: date
+    dobavljac: string
+    sirovina_ambalaza_id: id foreign:sirovina_ambalaza.id
+    relationships:
+      belongsTo: SirovinaAmbalaza
+
+  Oprema:
+    id: id
+    naziv: string
+    opis: text
+    godina_proizvodnje: year
+
+  ProizvodnaTura:
+    id: id
+    naziv_ture: string
+    vrsta_grozdja: string
+    kolicina: integer
+    datum_biranja: date
+    status: string
+    datum_pocetka_fermentacije: date
+
+  SirovinaAmbalaza:
+    id: id
+    naziv: string
+    tip: string
+    kolicina_na_stanju: integer
+    relationships:
+      hasMany: Nabavka
+
+  Zadatak:
+    id: id
+    opis: text
+    datum_dodele: date
+    datum_zavrsetka: date nullable
+    user_id: id foreign:users.id
+    uloga_id: id foreign:uloga.id
+    relationships:
+      belongsTo: User, Uloga
+
+controllers:
+  User:
+    resource: api
+  Uloga:
+    resource: api
+  Nabavka:
+    resource: api
+  Oprema:
+    resource: api
+  ProizvodnaTura:
+    resource: api
+  SirovinaAmbalaza:
+    resource: api
+  Zadatak:
+    resource: api
